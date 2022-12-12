@@ -81,7 +81,7 @@ class App extends Component {
     }
 
     if (filter === 'salary') {
-      return items.filter(item => item.salary > 1000)
+      return items.filter(item => item.salary >= 1000)
     }
 
     return items
@@ -117,8 +117,9 @@ class App extends Component {
     const visibleData = this.onFilter(this.searchEmp(data, term), filter)
     const numIncrease = visibleData.filter(item => item.increase)
 
-
+    console.log('Не адаптивный');
     return (
+
       <div className="app">
         <AppInfo
           numEmployees={visibleData.length}
