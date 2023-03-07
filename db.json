@@ -1,0 +1,32 @@
+{
+  "people": [
+    {
+      "id": 1,
+      "name": "Алмаз",
+      "salary": "3000",
+      "increase": true,
+      "rise": false
+    },
+    {
+      "id": 2,
+      "name": "Ыйман",
+      "salary": 5000,
+      "increase": true,
+      "rise": true
+    },
+    {
+      "id": 3,
+      "name": "Риза",
+      "salary": "4000",
+      "increase": true,
+      "rise": false
+    },
+    {
+      "id": 4,
+      "name": "Баха",
+      "salary": "4000",
+      "increase": false,
+      "rise": true
+    }
+  ]
+}

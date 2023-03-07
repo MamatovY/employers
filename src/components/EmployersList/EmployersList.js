@@ -1,7 +1,9 @@
 import './EmployersList.css'
 import EmployersListItem from '../EmployersListItem/EmployersListItem.js'
+import Loader from './../Loader/Loader'
 
-const EmployersList = ({ data, onDelete, onToggleProp, onUpdateSalary }) => {
+
+const EmployersList = ({ data, onDelete, onToggleProp, onUpdateSalary, loading }) => {
     const elem = data.map(item => {
         const { id, ...itemProps } = item
 
@@ -17,7 +19,7 @@ const EmployersList = ({ data, onDelete, onToggleProp, onUpdateSalary }) => {
     })
     return (
         <ul className="app-list list-group">
-            {elem}
+            {loading ? <div><Loader /></div> : elem}
         </ul>
     )
 
