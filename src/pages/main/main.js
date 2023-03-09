@@ -8,9 +8,40 @@ import SearchPanel from "../../components/SearchPanel/SearchPanel"
 import './main.css'
 
 
+const people = [
+    {
+        id: 1,
+        name: "Алмаз",
+        salary: "3000",
+        increase: true,
+        rise: false
+    },
+    {
+        id: 2,
+        name: "Ыйман",
+        salary: 5000,
+        increase: true,
+        rise: true
+    },
+    {
+        id: 3,
+        name: "Риза",
+        salary: "4000",
+        increase: true,
+        rise: false
+    },
+    {
+        id: 4,
+        name: "Баха",
+        salary: "4000",
+        increase: false,
+        rise: true
+    }
+]
+
 
 const Main = () => {
-    const [data, setData] = useState([])
+    const [data, setData] = useState(people)
     const [loading, setLoading] = useState(true)
 
     const [term, setTerm] = useState('')
@@ -39,8 +70,8 @@ const Main = () => {
     }
 
     useEffect(() => {
-        setLoading(true)
-        request('http://localhost:3000/people').then(response => update(response))
+        // setLoading(true)
+        // request('http://localhost:3000/people').then(response => update(response))
     }, [])
 
 
