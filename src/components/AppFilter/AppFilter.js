@@ -1,7 +1,7 @@
 
 import './AppFilter.css'
 
-const AppFilter = ({ onFilterUpdate, filter }) => {
+const AppFilter = ({ filter, setFilter }) => {
 
     const buttonsData = [
         { name: 'all', label: 'Все сотрудники' },
@@ -16,7 +16,7 @@ const AppFilter = ({ onFilterUpdate, filter }) => {
             <button
                 key={name}
                 className={`btn ${clazz}`}
-                onClick={() => onFilterUpdate(name)}
+                onClick={() => setFilter(name)}
                 type='button'>
                 {label}
             </button>)
