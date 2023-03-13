@@ -8,40 +8,10 @@ import SearchPanel from "../../components/SearchPanel/SearchPanel"
 import './main.css'
 
 
-const people = [
-    {
-        id: 1,
-        name: "Алмаз",
-        salary: "3000",
-        increase: true,
-        rise: false
-    },
-    {
-        id: 2,
-        name: "Ыйман",
-        salary: 5000,
-        increase: true,
-        rise: true
-    },
-    {
-        id: 3,
-        name: "Риза",
-        salary: "4000",
-        increase: true,
-        rise: false
-    },
-    {
-        id: 4,
-        name: "Баха",
-        salary: "4000",
-        increase: false,
-        rise: true
-    }
-]
 
 
 const Main = () => {
-    const [data, setData] = useState(people)
+    const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
 
     const [term, setTerm] = useState('')
@@ -70,14 +40,14 @@ const Main = () => {
     }
 
     useEffect(() => {
-        // setLoading(true)
-        // request('http://localhost:3000/people').then(response => update(response))
+        setLoading(true)
+        request('http://localhost:3001/people').then(response => update(response))
     }, [])
 
 
     const deleteItem = (id) => {
         setLoading(true)
-        request(`http://localhost:3000/people/${id}`, 'DELETE')
+        request(`http://localhost:3001/people/${id}`, 'DELETE')
         setLoading(false)
         const newData = data.filter(item => item.id !== id)
         setData(newData)
@@ -89,7 +59,7 @@ const Main = () => {
         let body = { id: data.length + 1, name: name, salary: salary, increase: false, rise: false }
         let json = JSON.stringify(body)
         setLoading(true)
-        request('http://localhost:3000/people', 'POST', json)
+        request('http://localhost:3001/people', 'POST', json)
         setLoading(false)
     }
 
@@ -98,12 +68,26 @@ const Main = () => {
             if (item.id === id) {
                 let body = { [prop]: !item[prop] }
                 let json = JSON.stringify(body)
-                request(`http://localhost:3000/people/${id}`, 'PATCH', json)
+                request(`http://localhost:3001/people/${id}`, 'PATCH', json)
                 return { ...item, [prop]: !item[prop] }
             }
             return item
         })
 
+        setData(newData)
+    }
+
+    const onUpdateSalary = (id, salary) => {
+        let body = { salary: salary }
+        let json = JSON.stringify(body)
+        request(`http://localhost:3001/people/${id}`, 'PATCH', json)
+
+        const newData = data.map(item => {
+            if (item.id === id) {
+                return { ...item, salary }
+            }
+            return item
+        })
         setData(newData)
     }
 
@@ -142,20 +126,7 @@ const Main = () => {
 
 
 
-    const onUpdateSalary = (id, salary) => {
-        let body = { salary: salary }
-        let json = JSON.stringify(body)
-        request(`http://localhost:3000/people/${id}`, 'PATCH', json)
 
-        const newData = data.map(item => {
-            if (item.id === id) {
-                return { ...item, salary }
-            }
-            return item
-        })
-
-        setData(newData)
-    }
 
 
 
